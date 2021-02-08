@@ -12,8 +12,8 @@ void main() {
         ),
         body: Center(
           child: Image(
-            image: NetworkImage(
-                'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'),
+            image: AssetImage(
+                'images/diamond.png'),
           ),
         ),
       ),
