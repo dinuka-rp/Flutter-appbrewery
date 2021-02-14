@@ -8,49 +8,36 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.teal,
-        body: SafeArea(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            // mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                // height: 100.0,
-                width: 100.0,
-                // margin: EdgeInsets.only(left: 30.0),
-                // padding: EdgeInsets.all(20.0),
-                color: Colors.white,
-                child: Text('Container 1'),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-
-              children: [
-                  Container(
-                    width: 100.0,
-                    height: 100.0,
-                    color: Colors.yellow,
-                    // child: Text('Container 2'),
-                  ),Container(
-                    width: 100.0,
-                    height: 100.0,
-                    color: Colors.green,
-                    // child: Text('Container 2'),
-                  ),
-                ],
-              ),
-              Container(
-                width: 100.0,
-                // height: 100.0,
-                color: Colors.red,
-                child: Text('Container 3'),
-              ),
-            ],
-          ),
+        home: Scaffold(
+      backgroundColor: Colors.teal,
+      body: SafeArea(
+        child: Column(
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // mainAxisSize: MainAxisSize.min,
+          children: [
+            CircleAvatar(
+              radius: 50.0,
+              backgroundImage: AssetImage('images/dinuka.jpeg'),
+            ),
+            Text('Dinuka Piyadigama',
+                style: TextStyle(
+                    fontFamily: 'Pacifico',
+                    fontSize: 40.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)),
+            Text(
+              'SOFTWARE DEVELOPER',
+              style: TextStyle(
+                  fontFamily: 'Source Sans Pro',
+                  fontSize: 20.0,
+                  color: Colors.teal[100],
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2.5),
+            ),
+          ],
         ),
       ),
-    );
+    ));
   }
 }
