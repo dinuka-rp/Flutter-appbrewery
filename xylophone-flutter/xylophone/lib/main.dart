@@ -8,7 +8,7 @@ void main() => runApp(XylophoneApp());
 class XylophoneApp extends StatelessWidget {
   final player = AudioCache(); // player that plays cached audio
 
-  void playSound({int soundNumber}) {
+  void playSound(int soundNumber) {
     player.play(
         'note$soundNumber.wav'); // audio player package already takes sounds from assets/
   }
@@ -18,7 +18,7 @@ class XylophoneApp extends StatelessWidget {
       child: FlatButton(
         color: color,
         onPressed: () {
-          playSound(soundNumber: soundNumber);
+          playSound(soundNumber);
         },
       ),
     );
