@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'quiz_brain.dart';
 
 QuizBrain quizBrain = new QuizBrain();
@@ -39,29 +40,44 @@ class _QuizPageState extends State<QuizPage> {
   // List<bool> answers = [false, true, true];
 
   void checkAnswer(bool userPickedAnswer) {
-    bool correctAnswer = quizBrain.getQuestionAnswer();
+    bool correctAnswer = quizBrain.getCorrectAnswer();
 
     setState(() {
-      if (userPickedAnswer == correctAnswer) {
-        // user got it right
-        scoreKeeper.add(
-          Icon(
-            Icons.check,
-            color: Colors.green,
-          ),
-        );
-      } else {
-        // user got it wrong
-        scoreKeeper.add(
-          Icon(
-            Icons.close,
-            color: Colors.red,
-          ),
-        );
-      }
-      quizBrain.nextQuestion();
-    });
+      if (quizBrain.isFinished()) {
+        Alert(
+                context: context,
+                title: "Quiz Complete",
+                desc:
+                    "You have answered all questions in the quiz. The quiz will now be reset.")
+            .show();
 
+        // reset the questionNumber
+        quizBrain.reset();
+
+        // empty out the scoreKeeper
+        scoreKeeper.clear();
+      } else {
+        if (userPickedAnswer == correctAnswer) {
+          // user got it right
+          scoreKeeper.add(
+            Icon(
+              Icons.check,
+              color: Colors.green,
+            ),
+          );
+        } else {
+          // user got it wrong
+          scoreKeeper.add(
+            Icon(
+              Icons.close,
+              color: Colors.red,
+            ),
+          );
+        }
+
+        quizBrain.nextQuestion();
+      }
+    });
   }
 
   @override
@@ -89,9 +105,13 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              textColor: Colors.white,
-              color: Colors.green,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white,
+                backgroundColor: Colors.green,
+              ),
+              // textColor: Colors.white,
+              // color: Colors.green,
               child: Text(
                 'True',
                 style: TextStyle(
@@ -109,8 +129,11 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              color: Colors.red,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white,
+                backgroundColor: Colors.red,
+              ),
               child: Text(
                 'False',
                 style: TextStyle(

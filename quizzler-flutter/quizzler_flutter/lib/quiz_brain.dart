@@ -41,7 +41,19 @@ class QuizBrain {
     return _questionBank[_questionNumber].questionText;
   }
 
-  bool getQuestionAnswer() {
+  bool getCorrectAnswer() {
     return _questionBank[_questionNumber].questionAnswer;
+  }
+
+  bool isFinished() {
+    if (_questionNumber == _questionBank.length - 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void reset() {
+    _questionNumber = 0;
   }
 }
